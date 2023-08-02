@@ -1,0 +1,366 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Ansible Note - DevPro Insights</title><meta name=Description content="Focused on knowledge and innovation in software development."><meta property="og:title" content="Ansible Note"><meta property="og:description" content="1. Introduction Ansible is a Python-based automation tool that manages nodes over SSH and uses YAML to describe configurations. It has features like being agentless, efficient, and simple. Ansible is commonly used for automation deployment, configuration management, etc.
+2. Installation & Configuration 2.1. Install Ansible 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # MacOS > brew install ansible # CentOS > yum install epel-release > yum repolist > yum install ansible -y # Ubuntu > sudo apt-add-repository ppa:ansible/ansible > sudo apt-get update > sudo apt-get install ansible # Pip > pip install ansible 2."><meta property="og:type" content="article"><meta property="og:url" content="https://iamwlb.github.io/ansible-note/"><meta property="og:image" content="https://iamwlb.github.io/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-08-03T02:26:37+08:00"><meta property="article:modified_time" content="2023-08-03T02:26:37+08:00"><meta property="og:site_name" content="DevPro Insights"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://iamwlb.github.io/logo.png"><meta name=twitter:title content="Ansible Note"><meta name=twitter:description content="1. Introduction Ansible is a Python-based automation tool that manages nodes over SSH and uses YAML to describe configurations. It has features like being agentless, efficient, and simple. Ansible is commonly used for automation deployment, configuration management, etc.
+2. Installation & Configuration 2.1. Install Ansible 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # MacOS > brew install ansible # CentOS > yum install epel-release > yum repolist > yum install ansible -y # Ubuntu > sudo apt-add-repository ppa:ansible/ansible > sudo apt-get update > sudo apt-get install ansible # Pip > pip install ansible 2."><meta name=application-name content="DevPro Insights"><meta name=apple-mobile-web-app-title content="DevPro Insights"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://iamwlb.github.io/ansible-note/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Ansible Note","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/iamwlb.github.io\/ansible-note\/"},"image":[{"@type":"ImageObject","url":"https:\/\/iamwlb.github.io\/images\/Apple-Devices-Preview.png","width":3200,"height":2048}],"genre":"posts","keywords":"Ansible, Automation","wordcount":924,"url":"https:\/\/iamwlb.github.io\/ansible-note\/","datePublished":"2023-08-03T02:26:37+08:00","dateModified":"2023-08-03T02:26:37+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/iamwlb.github.io\/images\/avatar.png","width":528,"height":560}},"author":{"@type":"Person","name":"Libing Wang"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="DevPro Insights"><span class=header-title-pre><i class='far fa-kiss-wink-heart fa-fw' aria-hidden=true></i></span>DevPro Insights</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/categories/>Categories </a><a class=menu-item href=/categories/documentation/>Docs </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="DevPro Insights"><span class=header-title-pre><i class='far fa-kiss-wink-heart fa-fw' aria-hidden=true></i></span>DevPro Insights</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/categories/documentation/ title>Docs</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Ansible Note</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://iamwlb.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>Libing Wang</a></span>&nbsp;<span class=post-category>included in <a href=/categories/devops/><i class="far fa-folder fa-fw" aria-hidden=true></i>DevOps</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2023-08-03>2023-08-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;924 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;5 minutes&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><a href=#1-introduction>1. Introduction</a></li><li><a href=#2-installation--configuration>2. Installation & Configuration</a><ul><li><a href=#21-install-ansible>2.1. Install Ansible</a></li><li><a href=#22-configure-ansible>2.2. Configure Ansible</a></li></ul></li><li><a href=#3-common-modules>3. Common Modules</a></li><li><a href=#4-snippets>4. Snippets</a><ul><li><a href=#41-remote-copy>4.1. Remote copy</a></li><li><a href=#42-yum>4.2. yum</a></li><li><a href=#43-execute-shell>4.3. Execute shell</a></li><li><a href=#44-file>4.4. file</a></li><li><a href=#45-service>4.5. service</a></li><li><a href=#46-variables>4.6. Variables</a></li><li><a href=#47-environment>4.7. environment</a></li><li><a href=#48-template>4.8. template</a></li><li><a href=#49-tags>4.9. tags</a></li></ul></li><li><a href=#5-common-errors>5. Common Errors</a><ul><li><a href=#51-notify-does-not-execute>5.1. notify does not execute</a></li><li><a href=#52-environment-variables-do-not-take-effect>5.2. Environment variables do not take effect</a></li><li><a href=#53-ansible-shell-script-does-not-work-as-expected>5.3. Ansible shell script does not work as expected</a></li><li><a href=#54-usrbinpython-not-found>5.4. /usr/bin/python: not found</a></li><li><a href=#55-ansible-hangs-for-no-reason>5.5. Ansible hangs for no reason</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><h2 id=1-introduction>1. Introduction</h2><p>Ansible is a Python-based automation tool that manages nodes over SSH and uses YAML to describe configurations. It has features like being agentless, efficient, and simple. Ansible is commonly used for automation deployment, configuration management, etc.</p><h2 id=2-installation--configuration>2. Installation & Configuration</h2><h3 id=21-install-ansible>2.1. Install Ansible</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># MacOS</span>
+</span></span><span class=line><span class=cl>&gt; brew install ansible
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># CentOS  </span>
+</span></span><span class=line><span class=cl>&gt; yum install epel-release
+</span></span><span class=line><span class=cl>&gt; yum repolist
+</span></span><span class=line><span class=cl>&gt; yum install ansible -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Ubuntu</span>
+</span></span><span class=line><span class=cl>&gt; sudo apt-add-repository ppa:ansible/ansible
+</span></span><span class=line><span class=cl>&gt; sudo apt-get update
+</span></span><span class=line><span class=cl>&gt; sudo apt-get install ansible
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Pip</span>
+</span></span><span class=line><span class=cl>&gt; pip install ansible
+</span></span></code></pre></td></tr></table></div></div><h3 id=22-configure-ansible>2.2. Configure Ansible</h3><p>Edit the <code>/etc/ansible/ansible.cfg</code> file for configuration. E.g. define the inventory file, enable logging, etc.</p><h2 id=3-common-modules>3. Common Modules</h2><p>Some common Ansible modules:</p><ul><li><strong>command</strong> - Execute commands</li><li><strong>copy</strong> - Copy files</li><li><strong>shell</strong> - Execute scripts</li><li><strong>yum</strong> - Package management</li><li><strong>service</strong> - Manage services</li></ul><p>Use <code>ansible-doc -l</code> to see all modules.</p><h2 id=4-snippets>4. Snippets</h2><h3 id=41-remote-copy>4.1. Remote copy</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>copy file to the target host</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>copy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>src</span><span class=p>:</span><span class=w> </span><span class=l>filename</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>dest</span><span class=p>:</span><span class=w> </span><span class=l>/usr/local/src/</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=42-yum>4.2. yum</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>install dependencies</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>yum</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>gcc-c++</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>pcre</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>pcre-devel</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>zlib </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>zlib-devel</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>openssl</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>openssl-devel</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=43-execute-shell>4.3. Execute shell</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>shell</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=l>make &amp;&amp; make install</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=l>/usr/local/src/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>set script permissions</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=l>chmod +x /etc/profile.d/start-tomcat.sh</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=l>/usr/local/src/mysql_secure_installation.sh</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>execute mysql_secure_installation.sh</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=l>sh mysql_secure_installation.sh</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=l>/usr/local/src/</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=44-file>4.4. file</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>create directory if it does not exist</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>file</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>/var/www/html/yumrepository</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>directory</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>mode</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0755&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>create a symlink for keystone virtual host config </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>file</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>src</span><span class=p>:</span><span class=w> </span><span class=l>/usr/share/keystone/wsgi-keystone.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>dest</span><span class=p>:</span><span class=w> </span><span class=l>/etc/httpd/conf.d/wsgi-keystone.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>link  </span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=45-service>4.5. service</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>start nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;nohup /usr/local/nginx/sbin/nginx &amp;&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>reload service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>systemd</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>daemon-reload</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>start and enable elasticsearch on boot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>elasticsearch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>started</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enabled</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wait for elasticsearch to start</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>wait_for</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>9200</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>delay</span><span class=p>:</span><span class=w> </span><span class=m>10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>start service httpd if not started</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>httpd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>started</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>stop service httpd if started  </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>httpd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>stopped</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>restart service httpd in all cases</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>httpd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>restarted</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>reload service httpd in all cases</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>httpd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>reloaded</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>enable httpd service , don&#39;t touch state</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>httpd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enabled</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>start service foo based on running process</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>foo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>pattern</span><span class=p>:</span><span class=w> </span><span class=l>/usr/bin/foo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>started</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>restart network service for interface eth0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>network </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>restarted</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>args</span><span class=p>:</span><span class=w> </span><span class=l>eth0</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=46-variables>4.6. Variables</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># register shell result as variable</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>verify installation</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=l>docker version</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>register</span><span class=p>:</span><span class=w> </span><span class=l>dockerVersion</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>print docker version</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>debug</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>var</span><span class=p>:</span><span class=w> </span><span class=l>dockerVersion</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># check if file exists</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>register file info</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>stat</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/tmp/test_file&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>register</span><span class=p>:</span><span class=w> </span><span class=l>file_path</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>create file if it doesn&#39;t exist</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>file</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/tmp/test_file&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>touch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>file_path.stat.exists == False  </span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=47-environment>4.7. environment</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>check </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=l>openstack token issue</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>register</span><span class=p>:</span><span class=w> </span><span class=l>openstack_token_issue</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_PROJECT_DOMAIN_NAME</span><span class=p>:</span><span class=w> </span><span class=l>Default</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_USER_DOMAIN_NAME</span><span class=p>:</span><span class=w> </span><span class=l>Default</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_PROJECT_NAME</span><span class=p>:</span><span class=w> </span><span class=l>admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_USERNAME</span><span class=p>:</span><span class=w> </span><span class=l>admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=l>admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_AUTH_URL</span><span class=p>:</span><span class=w> </span><span class=l>http://192.168.0.101:5000/v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_IDENTITY_API_VERSION</span><span class=p>:</span><span class=w> </span><span class=m>3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OS_IMAGE_API_VERSION</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>tags</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>debug</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=48-template>4.8. template</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>{{<span class=w> </span><span class=l>yum_server_ip }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>generate /etc/etcd/etcd.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>src</span><span class=p>:</span><span class=w> </span><span class=l>etcd.conf.j2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>dest</span><span class=p>:</span><span class=w> </span><span class=l>/etc/etcd/etcd.conf</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>all:vars<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=c1># yum server ip </span>
+</span></span><span class=line><span class=cl><span class=nv>yum_server_ip</span><span class=o>=</span>172.16.18.23
+</span></span></code></pre></td></tr></table></div></div><h3 id=49-tags>4.9. tags</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>copy file to the target host</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>src</span><span class=p>:</span><span class=w> </span><span class=l>CentOS-PrivateLocal.repo.j2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>dest</span><span class=p>:</span><span class=w> </span><span class=l>/etc/yum.repos.d/CentOS-PrivateLocal.repo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>tags</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>debug</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>&gt; ansible-playbook -i hosts site.yml --tags<span class=o>=</span>debug
+</span></span></code></pre></td></tr></table></div></div><h2 id=5-common-errors>5. Common Errors</h2><h3 id=51-notify-does-not-execute>5.1. notify does not execute</h3><p>If the source and target files are the same when copying config files, the copy command does not execute.
+If the copy command does not execute, the notify will not call the handler.
+The solution is to delete the existing config file first before copying.</p><h3 id=52-environment-variables-do-not-take-effect>5.2. Environment variables do not take effect</h3><ul><li>For non-login shells like Ansible remote execution, environment variables in /etc/profile and ~/.bash_profile are not loaded, only ~/.bashrc and /etc/bashrc are loaded.</li><li>If commands requiring specific environment variables need to be executed in Ansible, source ~/.bash_profile beforehand or put the environment variables in ~/.bashrc.</li></ul><h3 id=53-ansible-shell-script-does-not-work-as-expected>5.3. Ansible shell script does not work as expected</h3><p>Problem:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>start skywalking</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;./startup.sh&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>executable</span><span class=p>:</span><span class=w> </span><span class=l>/bin/bash</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;/usr/local/skywalking/bin/&#39;</span><span class=w> 
+</span></span></span></code></pre></td></tr></table></div></div><p>Ansible can execute normally and returns results, but actually does not start.
+It can start normally via SSH.</p><p>Solution:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>start skywalking</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;nohup ./startup.sh &amp;&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>executable</span><span class=p>:</span><span class=w> </span><span class=l>/bin/bash</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;/usr/local/skywalking/bin/&#39;</span><span class=w>  
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=54-usrbinpython-not-found>5.4. /usr/bin/python: not found</h3><p>Problem:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>&gt; fatal: <span class=o>[</span>node1<span class=o>]</span>: FAILED! <span class=o>=</span>&gt; <span class=o>{</span><span class=s2>&#34;changed&#34;</span>: false, <span class=s2>&#34;module_stderr&#34;</span>: <span class=s2>&#34;Shared connection to 192.168.100.111 closed.\r\n&#34;</span>, <span class=s2>&#34;module_stdout&#34;</span>: <span class=s2>&#34;/bin/sh: 1: /usr/bin/python: not found\r\n&#34;</span>, <span class=s2>&#34;msg&#34;</span>: <span class=s2>&#34;MODULE FAILURE\nSee stdout/stderr for the exact error&#34;</span>, <span class=s2>&#34;rc&#34;</span>: 127<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Solution 1:</p><p>Install python on the remote host</p><p>Solution 2:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>ansible_python_interpreter</span><span class=o>=</span>/usr/bin/python3 
+</span></span></code></pre></td></tr></table></div></div><h3 id=55-ansible-hangs-for-no-reason>5.5. Ansible hangs for no reason</h3><p>Problem: Ansible may hang randomly at some step during execution, even though that step has actually finished.</p><p>Solution:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>&gt; rm -rf ~/.ansible
+</span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2023-08-03</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/ansible-note/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://iamwlb.github.io/ansible-note/ data-title="Ansible Note" data-hashtags=Ansible,Automation><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://iamwlb.github.io/ansible-note/ data-hashtag=Ansible><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://iamwlb.github.io/ansible-note/ data-title="Ansible Note"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://iamwlb.github.io/ansible-note/ data-title="Ansible Note"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://iamwlb.github.io/ansible-note/ data-title="Ansible Note"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/ansible/>Ansible</a>,&nbsp;<a href=/tags/automation/>Automation</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav></div></div><div id=comments><div id=gitalk class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk></a>Gitalk</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><span id=busuanzi_container_site_pv>Site views：<span id=busuanzi_value_site_pv></span></span>
+&nbsp;
+<span id=busuanzi_container_site_uv>You are visitor number <span id=busuanzi_value_site_uv></span> to this site</span>
+<center>This website has been running for <span id=span_dt_dt style=color:#0196e3></span>
+<script language=javascript>function show_date_time(){window.setTimeout("show_date_time()",1e3),BirthDay=new Date("7/30/2023 00:00:00"),today=new Date,timeold=today.getTime()-BirthDay.getTime(),sectimeold=timeold/1e3,secondsold=Math.floor(sectimeold),msPerDay=24*60*60*1e3,e_daysold=timeold/msPerDay,daysold=Math.floor(e_daysold),e_hrsold=(e_daysold-daysold)*24,hrsold=Math.floor(e_hrsold),e_minsold=(e_hrsold-hrsold)*60,minsold=Math.floor((e_hrsold-hrsold)*60),seconds=Math.floor((e_minsold-minsold)*60),span_dt_dt.innerHTML=""+daysold+"&nbsp;Days&nbsp;"+hrsold+"&nbsp;Hours&nbsp;"+minsold+"&nbsp;Minutes&nbsp;"+seconds+"&nbsp;Seconds&nbsp;"}show_date_time()</script></center><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://iamwlb.github.io target=_blank>Libing Wang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{gitalk:{admin:["iamwlb"],clientID:"eb0836324e42452bad17",clientSecret:"e2c93180b1f115740c96e248020fb490422348e9",id:"2023-08-03T02:26:37+08:00",owner:"iamwlb",repo:"blog-comment",title:"Ansible Note"}},search:{algoliaAppID:"YGZ8352V6U",algoliaIndex:"iamwlb-github-io",algoliaSearchKey:"fefc1a11fc90135f40a263e2af024563",highlightTag:"em",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"algolia"}}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0ZML4SJ5J7",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-0ZML4SJ5J7" async></script></body></html>
